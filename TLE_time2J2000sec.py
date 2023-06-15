@@ -1,6 +1,9 @@
-# Compute number of seconds since 2000-01-01 12:00:00 (J2000)
-# This function takes into account leap years, but not leap seconds
+'''
+Compute number of seconds since 2000-01-01 12:00:00 (J2000)
+This function takes into account leap years, but not leap seconds
 
+Created 2023-06-14 by Oana Nica
+'''
 def TLE_time2J2000sec(year_input,day_input):
     year = 2000 + year_input
     leap_years = range(2004, 2050, 4)

@@ -8,8 +8,9 @@ It returns the position and velocity vectors expressed in the ECI frame
 Created 2023-06-15 by Oana Nica
 '''
 import numpy as np
+import constants
 
-def kepl2cart(kepl_elem,t0,t,mu):
+def kepl2cart(kepl_elem,t0,t):
     a = kepl_elem[0] # semi-major axis [m]
     e = kepl_elem[1] # eccentricity [-]
     i = kepl_elem[2] # inclination [rad]
@@ -22,7 +23,7 @@ def kepl2cart(kepl_elem,t0,t,mu):
         M = M0
     else:
         delta_t = t - t0
-        M = M0 + delta_t * (mu / a ** 3) ** (1/2)
+        M = M0 + delta_t * (constants.mu_e / a ** 3) ** (1/2)
         while M > 2 * np.pi:
             M = M - 2 * np.pi
             
@@ -54,7 +55,7 @@ def kepl2cart(kepl_elem,t0,t,mu):
     
     o_vect = r * np.array([np.cos(theta),np.sin(theta),0]).reshape(-1,1)
 
-    o_dot_vect = np.sqrt(mu * a) / r * np.array([-np.sin(E), np.sqrt(1 - e ** 2) * np.cos(E), 0]).reshape(-1,1)
+    o_dot_vect = np.sqrt(constants.mu_e * a) / r * np.array([-np.sin(E), np.sqrt(1 - e ** 2) * np.cos(E), 0]).reshape(-1,1)
     
     # Transform the previous vectors from orbital frame to the ECI frame (z-axis perpendicular to the equatorial plane, x-axis pointing to the prime meridian)
     

@@ -1,6 +1,6 @@
 from mayavi import mlab
 from tvtk.api import tvtk # python wrappers for the C++ vtk ecosystem
-
+import constants
 
 def plot_Earth(image_file):
     # create a figure window (and scene)
@@ -13,11 +13,11 @@ def plot_Earth(image_file):
     # (interpolate for a less raster appearance when zoomed in)
 
     # use a TexturedSphereSource, a.k.a. getting our hands dirty
-    R = 6378.14
+    
     Nrad = 180
 
     # create the sphere source with a given radius and angular resolution
-    sphere = tvtk.TexturedSphereSource(radius=R, theta_resolution=Nrad,
+    sphere = tvtk.TexturedSphereSource(radius=constants.R_e, theta_resolution=Nrad,
                                        phi_resolution=Nrad)
 
     # assemble rest of the pipeline, assign texture    

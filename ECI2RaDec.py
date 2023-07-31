@@ -27,7 +27,7 @@ def ECI2RaDec(state):
     if m > 0:
         RA = np.arccos(l / np.cos(dec))
     else:
-        RA = 2 * np.pi - np.arccos(l / np.cocs(dec))
+        RA = 2 * np.pi - np.arccos(l / np.cos(dec))
         
     return dec, RA
     

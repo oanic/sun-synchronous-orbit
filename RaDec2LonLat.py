@@ -14,10 +14,16 @@ INPUTS
  
 Created 2023-06-29 by Oana Nica
 """
+import numpy as np
 
 def RaDec2LonLat(dec,RA,GAST_t0,w_e,t0,t):
     
     lat = dec
     lon = (RA - GAST_t0) - w_e * (t - t0)
+    
+    if lon > np.pi:
+        lon = lon - 2 * np.pi
+    elif lon < -np.pi:
+        lon = lon + 2 * np.pi
     
     return lon, lat
